@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>svgMap demos</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
+  <link href="demo.css" rel="stylesheet">
+
+  <link href="../dist/svgMap.css" rel="stylesheet">
+  <script src="../dist/svgMap.js"></script>
+  <link href="//db.onlinewebfonts.com/c/7a8bc7c29b5bcadb9510cca51210ac46?family=Sitka+Banner" rel="stylesheet" type="text/css"/>
+
+  
+</head>
+
+<body>
+      <div id="svgMapPopulation"></div>
+
+      <div id="sidebar">
+        <h2 class="animalsh2">Animals</h2>
+        <div id="filter">
+          <button id="birds" class="filter-button">Birds</button>
+          <button id="mammals" class="filter-button">Mammals</button>
+          <button id="reptiles" class="filter-button">Reptiles</button>
+          <button id="amphibians" class="filter-button">Amphibians</button>
+          <button id="fish" class="filter-button">Fish</button>
+          <button id="insects" class="filter-button">Insects</button>
+        </div>
+
+        <div id="animal-items">
+          <div class="animal-item">
+            <div class="img-item">
+            <img src="" />
+            </div>
+            <h1>Naam</h1>
+            <p>
+              Beschrijving
+            </p>
+            <div class="number-container">
+              <div class="number"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script src="../data/population.js"></script>
+      <script src="../data/animals.js"></script>
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+          // Make reference to sidebar.
+
+          const sidebar = document.getElementById('sidebar');
+
+          // Make reference to animal items.
+
+          const animalItems = document.getElementById('animal-items');
+
+          // Make reference to animal item element.
+
+          const animalItem = document.getElementsByClassName('animal-item')[0];
+
+          // Initialize map.
+
+          new svgMap({
+            targetElementID: 'svgMapPopulation',
+            data: svgMapDataPopulation,
+            flagType: 'emoji'
+          });
+
+          // Iterate countries.
+
+          const countries = document.getElementsByClassName('svgMap-country');
+
+          Array.from(countries).forEach(country => {
+            country.addEventListener('click', event => {
+              event.preventDefault();
+
+              animalItems.innerHTML = '';
+
+              const countryCode = event.target.getAttribute('data-id');
+
+              const country = svgMapDataAnimals.values[countryCode];
+
+              const _classes = Object.keys(country);
+              _classes.forEach(_class => {
+                const animals = country[_class];
+
+                animals.forEach(animal => {
+                  const animalItemClone = animalItem.cloneNode(true);
+
+                  animalItemClone.getElementsByTagName('h1')[0].textContent = animal.name;
+                  animalItemClone.getElementsByTagName('p')[0].textContent = animal.description;
+                  animalItemClone.getElementsByTagName('img')[0].src = '../images/' + animal.image;
+
+                  const numberContainer = animalItemClone.getElementsByClassName('number-container')[0];
+
+                  const number = animalItemClone.getElementsByClassName('number')[0];
+                  number.style.width = (312 / 100 * animal.number) + 'px';
+
+                  animalItemClone.classList.add('visible');
+                  animalItemClone.classList.add(_class);
+
+                  animalItems.appendChild(animalItemClone);
+                });
+              });
+
+            });
+          });
+
+          // Iterate filters
+
+          const filters = document.getElementsByClassName('filter-button');
+          Array.from(filters).forEach(filter => {
+            filter.addEventListener('click', event => {
+
+              const _class = event.target.getAttribute('id');
+
+              const animalItems = document.getElementsByClassName('animal-item');
+              Array.from(animalItems).forEach(animalItem => {
+                if (animalItem.classList.contains(_class)) {
+                  animalItem.classList.add('visible');
+                } else {
+                  animalItem.classList.remove('visible');
+                }
+              });
+            });
+          });
+
+        });
+      </script>
+
+</body>
+
+</html>

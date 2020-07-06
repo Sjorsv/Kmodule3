@@ -1,0 +1,138 @@
+body {
+  font-family: sans-serif;
+  color: #000;
+  background: #fff;
+  padding: 0;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: transparent;
+  overflow: hidden;
+}
+
+@import url(//db.onlinewebfonts.com/c/7a8bc7c29b5bcadb9510cca51210ac46?family=Sitka+Banner);
+
+.demo-wrapper {
+  box-sizing: border-box;
+  width: 800px;
+  max-width: calc(100% - 30px);
+  margin: auto;
+  padding: 30px 0 0;
+}
+
+.demo-container {
+  padding: 0 0 80px;
+}
+
+h2 {
+  /* text-align: center; */
+  font-size: 32px;
+  margin: 0 0 25px;
+  font-weight: normal;
+  font-family: "Sitka Banner";
+}
+
+
+h1 {
+  margin: 0;
+  font-size:21px;
+  font-family: "Sitka Banner";
+}
+
+#sidebar {
+  display: block;
+  height: 100%;
+  width: 450px;
+  position: fixed;
+  right: 0;
+  top: 0;
+  background-color: #ffffff;
+  font-family: Sitka;
+  overflow:scroll;
+}
+
+.animal-item {
+  display: none;
+  background-color:#FFFFFF;
+  margin: 16px;
+  padding: 12px;
+  width: 400px;
+  height: 150px;
+  border-radius: 20px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.animal-item:hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.img-item {
+  width: 150px !important;
+  height: 150px;
+  float: left;
+  padding-right: 15px;
+  padding-top: 15px;
+}
+
+.visible {
+  display: block;
+}
+
+.number-container {
+  width: 100%;
+  height: 16px;
+}
+
+.number {
+  height: 100%;
+  background: blue;
+}
+.filter {
+
+  padding:0px 0px 20px 20px;
+}
+.filter-button {
+  border: none;
+  background-color: inherit;
+  /* padding: 14px 28px; */
+  color:#4E4E4E;
+  font-size: 14px;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Sitka Banner";
+  padding:30px 0px 0px 24px;
+}
+
+.animalsh2 {
+  position: relative;
+  margin-left: 22px;
+  margin-top: 20px;
+  /* padding: 10px; */
+
+ 
+}
+
+.filter-button:hover {
+  font-weight: bold;
+ }
+
+
+
+
+
+@media (max-width: 900px) {
+  h2 {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 600px) {
+  h2 {
+    font-size: 18px;
+  }
+}
+
+
+
+
